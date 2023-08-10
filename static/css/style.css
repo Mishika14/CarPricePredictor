@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #3498db, #2ecc71);
+    color: #fff;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+/*select, input, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+*/
+
+button {
+    background: #e74c3c;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #c0392b;
+}
+
+/* Style for the prediction result container */
+#prediction {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+.predi{
+text-align: center;}
+
+/* Apply styling to form elements */
+select,
+input,
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+/* Style for button on hover */
+button:hover {
+    background-color: #c0392b;
+}
+
+/* Style for form submission button */
+button[type="submit"] {
+    background-color: #e74c3c;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Reset default appearance for select dropdown arrow */
+select::-ms-expand {
+    display: none;
+}
+
+/* Style for select dropdown */
+select {
+    appearance: none;
+    background-color: off-white;
+    background-image: none;
+    padding-right: 25px;
+    background-position: right center;
+    background-repeat: no-repeat;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Style for select dropdown on hover/focus */
+select:hover, select:focus {
+    background-color: black;
+}

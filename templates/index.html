@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Car Prie predictor</title>
+</head>
+<body>
+    <h1>Welcome to Car Price Predictor</h1>
+    <p>This app predicts the price of a car you want to sell.Try filling the details below:</p>
+    <form method="post"  accept-charset="utf-8">
+
+        <label for="company"><b>Select companies :</b></label>
+        <select name="company" id="company" required="1" onchange="load_companies('company', 'car_model')">
+         {% for company in companies %}
+        <option value="{{company}}">{{company}}</option>
+         {% endfor%}
+        </select>
+
+        <label for="car_model"><b>Select Car model:</b></label>
+        <select name="car_model" id="car_model" required="1">
+
+        </select>
+
+
+        <label for="year"><b>Select year of model:</b></label>
+        <select name="year" id="year" required="1">
+            {%for year in years%}
+            <option value="{{year}}">{{year}}</option>
+            {%endfor%}
+        </select>
+
+
+        <label for="fuel_type"><b>Select Fuel type :</b></label>
+        <select name="fuel_type" id="fuel_type" required="1">
+            {%for fuel in fuel_type%}
+            <option value="{{fuel}}">{{fuel}}</option>
+            {%endfor%}
+        </select>
+
+
+        <label for="company"><b>Enter number of kilometers :</b></label>
+        <input type="text" id="kilo_driven" name="kilo_driven" placeholder="Enter n0.of kilometers travelled">
+
+        <button type="submit" onclick="send_data()">Predict Price</button>
+
+    </form>
+    <br>
+
+    <div class="predi">
+        <h3 ><span id="prediction"></span></h3>
+    </div>
+    <script >
+         function load_companies(company_id,car_model){
+         var company=document.getElementById(company_id);
+         var car_model=document.getElementById(car_model);
+         car_model.value="";
+         car_model.innerHTML="";
+          {%for company in companies%}
+          if(company.value=="{{company}}"){
+          {%for model in car_models%}
+          {%if company in model%}
+           var newOpt=document.createElement("option");
+           newOpt.value="{{ model }}";
+           newOpt.innerHTML="{{ model }}";
+           car_model.options.add(newOpt);
+          {%endif%}
+          {%endfor%}
+          }
+          {%endfor%}
+        }
+
+        function form_handler(event){
+        event.preventDefault();
+        }
+        function send_data(){
+        //suppress from default behaviours
+        document.querySelector('form').addEventListener('submit',form_handler);
+         var fd= new FormData(document.querySelector('form'));
+         var xhr= new XMLHttpRequest();
+         xhr.open('POST','/predict',true);
+         document.getElementById("prediction").innerHTML="wait we are predicting the price";
+         xhr.onreadystatechange=function(){
+         if(xhr.readyState == XMLHttpRequest.DONE)
+         {document.getElementById("prediction").innerHTML="Prediction: Rs.&#8377 "+xhr.responseText;
+         }
+         }
+         xhr.onload=function(){};
+         xhr.send(fd);
+        }
+    </script>
+</body>
+</html>
