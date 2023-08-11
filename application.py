@@ -1,5 +1,5 @@
 import pickle
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request,render
 import pandas as pd
 import pickle
 app = Flask(__name__)
@@ -12,7 +12,7 @@ def index():
     year=sorted(car['year'].unique())
 
     fuel_type=(car['fuel_type'].unique())
-    return render_template('index.html',companies=comapnies,car_models=car_models,years=year,fuel_type=fuel_type)
+    return render('index.html',companies=comapnies,car_models=car_models,years=year,fuel_type=fuel_type)
 @app.route('/predict',methods=['POST'])
 def predict():
     company=request.form.get('company')
